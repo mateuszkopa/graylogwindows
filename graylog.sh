@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Pobieranie wszystkich potrzebnych elementów
-sudo timedatectl set-timezone UTC+1
+sudo timedatectl set-timezone Europe/Warsaw
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install docker-compose nano
@@ -16,7 +16,7 @@ echo "Utworzono katalog /graylog z uprawnieniami 777."
 docker = "https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/docker-compose.yml"
 if [ -n "$docker" ]; then
   cd /graylog
-  sudo wget "$docker"
+  sudo wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/docker-compose.yml
   if [ $? -eq 0 ]; then
     echo "Pobrano plik do /graylog."
   else
@@ -39,7 +39,7 @@ echo "Utworzenie folderów koncowki i serwery"
 cd koncowki
 nxlog_koncowki = "https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/koncowki/nxlog.conf"
 if [ -n "$nxlog_koncowki" ]; then
-  sudo wget "$nxlog_koncowki"
+  sudo wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/koncowki/nxlog.conf
   if [ $? -eq 0 ]; then
     echo "Pobrano plik do /var/www/html/koncowki."
   else
@@ -57,7 +57,7 @@ cd ..
 cd serwery
 nxlog_serwery = "https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/serwery/nxlog.conf"
 if [ -n "$nxlog_serwery" ]; then
-  sudo wget "$nxlog_serwery"
+  sudo wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/serwery/nxlog.conf
   if [ $? -eq 0 ]; then
     echo "Pobrano plik do /var/www/html/serwery."
   else

@@ -52,13 +52,13 @@ services:
     restart: unless-stopped
 
   graylog:
-    image: graylog/graylog:6.1
+    image: graylog/graylog:6.1.10
     container_name: graylog
     environment:
       # CHANGE ME (must be at least 16 characters)!
       GRAYLOG_PASSWORD_SECRET: "somepasswordpepper"
-      # Password: admin
-      GRAYLOG_ROOT_PASSWORD_SHA2: "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
+      # Password: 
+      GRAYLOG_ROOT_PASSWORD_SHA2: "790138877e6c38c3c638cded2ec90ed38d4d9cf9a91f775717e7a30b11aa8224"
       GRAYLOG_HTTP_BIND_ADDRESS: "0.0.0.0:9000"
       GRAYLOG_HTTP_EXTERNAL_URI: "http://localhost:9000/"
       GRAYLOG_ELASTICSEARCH_HOSTS: "http://opensearch:9200"
@@ -92,10 +92,6 @@ services:
         condition: "service_started"
     ports:
       - 9000:9000/tcp   # Graylog web interface and REST API
-      - 1514:1514/tcp   # Syslog
-      - 1514:1514/udp   # Syslog
-      - 12201:12201/tcp # GELF
-      - 12201:12201/udp # GELF
       - 26100:26100/tcp
       - 26110:26110/tcp
       - 26120:26120/tcp

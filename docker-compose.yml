@@ -16,7 +16,7 @@ volumes:
 services:
   # Graylog stores configuration in MongoDB
   mongo:
-    image: mongo:6.0.5-jammy
+    image: mongo:7.0.20
     container_name: mongodb
     volumes:
       - "mongo_data:/data/db"
@@ -52,7 +52,7 @@ services:
     restart: unless-stopped
 
   graylog:
-    image: graylog/graylog:6.1.10
+    image: graylog/graylog:6.2.2
     container_name: graylog
     environment:
       # CHANGE ME (must be at least 16 characters)!
@@ -92,6 +92,8 @@ services:
         condition: "service_started"
     ports:
       - 9000:9000/tcp   # Graylog web interface and REST API
+      - 514:514/udp
+      - 514:514/tcp
       - 26100:26100/tcp
       - 26110:26110/tcp
       - 26120:26120/tcp

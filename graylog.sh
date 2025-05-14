@@ -14,7 +14,8 @@ echo "Utworzono katalog /graylog z uprawnieniami 777."
 
 # Pobranie pliku docker-compose do folderu /graylog
 cd /graylog
-  sudo wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/docker-compose.yml  
+sudo wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/docker-compose.yml 
+nano docker-compose.yml
 
 # Przejcie do folderu apache
 cd /var/www/html/
@@ -39,5 +40,9 @@ sudo wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/head
 
 # Edycja pliku konfiguracyjnego nxloga dla serwerow
 sudo nano nxlog.conf
+
+# Uruchomienie grayloga
+cd /graylog
+docker-compose up -d
 
 echo "Skrypt zakończony."

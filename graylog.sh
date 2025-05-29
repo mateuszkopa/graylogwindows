@@ -20,6 +20,8 @@ nano docker-compose.yml
 # Przejcie do folderu apache
 cd /var/www/html/
 echo "Przejście do katalogu /var/www/html/."
+rm index.html
+wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/nxlog.msi
 
 # Utworzenie folderów dla plików konfiguracyjnych nxloga
 mkdir koncowki

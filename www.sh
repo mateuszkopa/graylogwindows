@@ -2,20 +2,7 @@
 
 # Pobieranie wszystkich potrzebnych elementów
 sudo timedatectl set-timezone Europe/Warsaw
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install docker-compose nano apache2
-sudo usermod -aG docker $USER
-
-# Utworzenie katalogu graylog
-sudo mkdir /graylog
-sudo chmod 777 /graylog
-echo "Utworzono katalog /graylog z uprawnieniami 777."
-
-# Pobranie pliku docker-compose do folderu /graylog
-cd /graylog
-sudo wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/docker-compose.yml 
-nano docker-compose.yml
+sudo apt-get install apache2
 
 # Przejcie do folderu apache
 chmod 777 /var/www/html/
@@ -45,9 +32,5 @@ sudo wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/head
 
 # Edycja pliku konfiguracyjnego nxloga dla serwerow
 sudo nano nxlog.conf
-
-# Uruchomienie grayloga
-cd /graylog
-docker-compose up -d
 
 echo "Skrypt zakończony."

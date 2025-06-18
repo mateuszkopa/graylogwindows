@@ -1,0 +1,19 @@
+{
+    "upgrade_guid": "804a05f8-c1ee-401c-af95-170f7f350f78",
+    "version": "1.0.0",
+    "product_name": "Agent Grayloga dla koncowek",
+    "manufacturer": "Mateusz Kopaszewski dla AT Computers",
+    "name": "Agent Grayloga dla koncowek",
+    "name_base": "agraylog",
+    "comments": "Instalator ulatwiajacy wdrazanie grayloga",
+    "installdir": "graylog",
+	"license_file": "License.rtf",
+    "parts": [
+        {
+         "id": "AgentGraylog",
+         "title": "Instalator Grayloga",
+         "absent": "disallow",
+         "staged_dir": "staging"
+        }
+    ]
+}

@@ -17,23 +17,6 @@ cd /graylog
 sudo wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/docker-compose.yml 
 nano docker-compose.yml
 
-# Stworzenie agentów
-mkdir exe
-cd exe
-pip install pyinstaller requests zipfile subprocess shutil elevate
-wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/main.py
-chmod 777 main.py
-python main.py
-chmod 777 koncowki.py
-chmod 777 serwery.py
-pyinstaller --onefile "koncowki.py"
-pyinstaller --onefile "serwery.py"
-
-cp dist/koncowki.exe /var/www/html/koncowki
-cp dist/serwery.exe /var/www/html/serwery
-
-cd ..
-rm -rf exe
 
 # Przejcie do folderu apache
 chmod 777 /var/www/html/

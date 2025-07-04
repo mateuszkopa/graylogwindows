@@ -20,7 +20,7 @@ nano docker-compose.yml
 # Stworzenie agentów
 mkdir exe
 cd exe
-pip install pyinstaller
+pip install pyinstaller requests zipfile subprocess shutil elevate
 wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/main.py
 chmod 777 main.py
 python main.py
@@ -28,11 +28,12 @@ chmod 777 koncowki.py
 chmod 777 serwery.py
 pyinstaller --onefile "koncowki.py"
 pyinstaller --onefile "serwery.py"
-touch License.rtf
-mkdir staging staging/resources
-cp koncowki.exe staging
-cp serwery.exe staging
-cd staging/resources/
+
+cp dist/koncowki.exe /var/www/html/koncowki
+cp dist/serwery.exe /var/www/html/serwery
+
+cd ..
+rm -rf exe
 
 # Przejcie do folderu apache
 chmod 777 /var/www/html/
@@ -64,7 +65,7 @@ sudo wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/head
 sudo nano nxlog.conf
 
 # Uruchomienie grayloga
-cd /graylog
-docker-compose up -d
+# cd /graylog
+# docker-compose up -d
 
 echo "Skrypt zakończony."

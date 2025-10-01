@@ -21,7 +21,7 @@ for i in $(seq 1 $LOG_COUNT)
 do
   LOG_MESSAGE="To jest testowy log numer $i z serwera $(hostname)"
 
-  logger -n "$REMOTE_HOST" -P "$REMOTE_PORT" --protocol=udp -t "TestowySkrypt" -p user.info "$LOG_MESSAGE"
+  logger -n "$REMOTE_HOST" -P "$REMOTE_PORT" -d -t "TestowySkrypt" "$LOG_MESSAGE"
 
   echo "Wysłano log: \"$LOG_MESSAGE\""
   sleep "$SLEEP_INTERVAL"

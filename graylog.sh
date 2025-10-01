@@ -4,7 +4,7 @@
 sudo timedatectl set-timezone Europe/Warsaw
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install docker-compose nano apache2 python
+sudo apt-get install docker-compose nano apache2 
 sudo usermod -aG docker $USER
 
 # Utworzenie katalogu graylog

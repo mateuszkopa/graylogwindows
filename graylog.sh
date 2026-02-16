@@ -4,7 +4,7 @@
 sudo timedatectl set-timezone Europe/Warsaw
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install -y docker-compose nano apache2 samba python3-venv
+sudo apt-get install -y docker-compose nano apache2 samba python3-venv net-tools
 sudo usermod -aG docker $USER
 
 # Utworzenie katalogu graylog
@@ -62,5 +62,19 @@ wait
 # Uruchomienie grayloga
 cd /graylog
 sudo docker-compose up -d
+
+# Zmiana adresów IP
+read -p "Czy ustawić adres IP (T/N): " answer
+
+if [ "$answer" == "T" ]; then
+read -p "Podaj adres IP: " ip_address
+read -p "Podaj maskę: " subnet_mask
+read -p "Podaj gatewaya: " gateway
+read -p "Podaj DNS: " dns1 dns2
+ifconfig eth0 $ip_address netmask $subnet_mask up
+route add default gw $gateway
+echo "nameserver $dns1" | sudo tee -a /etc/resolv.conf
+echo "nameserver $dns2" | sudo tee -a /etc/resolv.conf
+fi
 
 echo "Skrypt zakończony."

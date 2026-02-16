@@ -4,15 +4,6 @@
 SAMBA_USER="samba"
 SHARE_PATH="/var/www/html"
 
-# Sprawdzenie uprawnień roota
-if [[ $EUID -ne 0 ]]; then
-   echo "Ten skrypt musi być uruchomiony z uprawnieniami sudo!"
-   exit 1
-fi
-
-echo "--- Instalacja Samby ---"
-apt update && apt install -y samba
-
 # 1. Tworzenie użytkownika systemowego (bez możliwości logowania SSH/GUI)
 if id "$SAMBA_USER" &>/dev/null; then
     echo "Użytkownik $SAMBA_USER już istnieje."

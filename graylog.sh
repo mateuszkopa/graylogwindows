@@ -4,7 +4,7 @@
 sudo timedatectl set-timezone Europe/Warsaw
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install -y docker-compose nano apache2 samba
+sudo apt-get install -y docker-compose nano apache2 samba python3-venv
 sudo usermod -aG docker $USER
 
 # Utworzenie katalogu graylog
@@ -54,29 +54,13 @@ sudo wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/head
 sudo nano nxlog.conf
 
 # SAMBA
-useradd -M -s /sbin/nologin "samba"
-chown -R $USER:www-data /var/www/html
-chmod -R 775 /var/www/html
-echo "--- Konfiguracja udziału sieciowego ---"
-cat <<EOF >> /etc/samba/smb.conf
-
-[www-html]
-   path = /var/www/html
-   browseable = yes
-   read only = no
-   guest ok = no
-   valid users = samba
-   force create mode = 0664
-   force directory mode = 0775
-   force user = samba
-EOF
-echo "USTAW HASŁO DLA KONTA SAMBA"
-smbpasswd -a "samba"
-systemctl restart smbd
-systemctl restart nmbd
+wget https://raw.githubusercontent.com/mateuszkopa/graylogwindows/refs/heads/main/samba.sh
+sudo chmod 777 samba.sh
+sudo ./samba.sh
+wait
 
 # Uruchomienie grayloga
 cd /graylog
-docker-compose up -d
+sudo docker-compose up -d
 
 echo "Skrypt zakończony."

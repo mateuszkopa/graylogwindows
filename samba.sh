@@ -59,3 +59,5 @@ fi
 echo "--- Konfiguracja zakończona! ---"
 echo "Użytkownik: $SAMBA_USER"
 echo "Ścieżka: $SHARE_PATH"
+
+rm -- "$0"

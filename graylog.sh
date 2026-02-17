@@ -117,3 +117,4 @@ fi
 fi
 
 echo "Skrypt zakończony."
+rm -- "$0"
